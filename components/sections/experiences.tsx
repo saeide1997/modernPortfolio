@@ -51,7 +51,7 @@ export function ExperienceSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="grid gap-12 md:grid-cols-2 items-center justify-center"
+          className="grid gap-12 md:grid-cols-2 items-center"
         >
           {/* Experience Cards */}
           <div className="space-y-8">
@@ -76,10 +76,7 @@ export function ExperienceSection() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.2 }}
               >
-                <motion.div
-                  className="relative w-full h-full group"
-                  style={{ perspective: "1000px" }}
-                >
+                <div className="relative w-full h-full group" style={{ perspective: "1000px" }}>
                   {/* Card with flip animation */}
                   <motion.div
                     className="w-full h-full transform-style-3d"
@@ -151,7 +148,7 @@ export function ExperienceSection() {
                       </p>
                     </div>
                   </motion.div>
-                </motion.div>
+                </div>
               </motion.div>
             ))}
           </div>
