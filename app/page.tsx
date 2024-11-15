@@ -5,6 +5,7 @@ import { SkillSection } from "@/components/sections/skills"
 
 
 
+
 export default function Home() {
   return (
     <>
