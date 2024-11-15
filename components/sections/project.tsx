@@ -50,7 +50,7 @@ export function ProjectSection() {
           {/* Project 1 */}
           <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
             <motion.img
-              src="/images/project1.jpg"
+              src="https://tinyurl.com/23oqzl97"
               alt="Project 1"
               className="w-full h-48 object-cover rounded-t-lg"
               initial={{ opacity: 0 }}
@@ -89,7 +89,7 @@ export function ProjectSection() {
           {/* Project 2 */}
           <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
             <motion.img
-              src="/images/project2.jpg"
+              src="https://tinyurl.com/25ydsheu"
               alt="Project 2"
               className="w-full h-48 object-cover rounded-t-lg"
               initial={{ opacity: 0 }}
@@ -128,7 +128,7 @@ export function ProjectSection() {
           {/* Project 3 */}
           <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
             <motion.img
-              src="/images/project3.jpg"
+              src="https://tinyurl.com/258xcbsc"
               alt="Project 3"
               className="w-full h-48 object-cover rounded-t-lg"
               initial={{ opacity: 0 }}
