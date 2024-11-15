@@ -11,7 +11,7 @@ interface Skill {
   icon: string
 }
 
-export default function Skills() {
+export function Skills() {
   const [showLevel, setShowLevel] = useState<boolean>(false)
 
   const skills: Skill[] = [
