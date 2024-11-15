@@ -6,7 +6,7 @@ import { ChevronRight } from "lucide-react"
 
 export function ProjectSection() {
   return (
-    <section id="projects" className="py-24 bg-background">
+    <section id="projects" className="py-24 bg-background dark:bg-dark-background transition-colors duration-300">
       <motion.section
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -16,7 +16,7 @@ export function ProjectSection() {
         {/* Animated background */}
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 animate-gradient" />
-          <div className="absolute inset-0 bg-grid-white/[0.02] bg-grid-pattern" />
+          <div className="absolute inset-0 bg-grid-white/[0.02] bg-grid-pattern dark:bg-grid-dark/[0.02]" />
         </div>
 
         <div className="container mx-auto px-4 z-10">
@@ -25,7 +25,7 @@ export function ProjectSection() {
               initial={{ scale: 0.5, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.5 }}
-              className="text-3xl md:text-5xl font-bold mb-6"
+              className="text-3xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-gray-100"
             >
               Featured Projects
             </motion.h2>
@@ -34,7 +34,7 @@ export function ProjectSection() {
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.2, duration: 0.5 }}
-              className="text-lg md:text-xl text-muted-foreground mb-8"
+              className="text-lg md:text-xl text-muted-foreground mb-8 dark:text-muted-foreground-dark"
             >
               A collection of my recent work that showcases my skills and creativity in web development.
             </motion.p>
@@ -49,7 +49,7 @@ export function ProjectSection() {
           >
             {/* Project 1 */}
             <motion.div
-              className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow"
+              className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow dark:bg-dark-card dark:shadow-xl"
               initial={{ y: 50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.5, duration: 0.6 }}
@@ -63,7 +63,7 @@ export function ProjectSection() {
                 transition={{ delay: 0.6, duration: 0.5 }}
               />
               <motion.h3
-                className="text-2xl font-semibold mt-4"
+                className="text-2xl font-semibold mt-4 text-gray-900 dark:text-gray-100"
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.8, duration: 0.5 }}
@@ -71,7 +71,7 @@ export function ProjectSection() {
                 Project One
               </motion.h3>
               <motion.p
-                className="text-muted-foreground mt-2"
+                className="text-muted-foreground mt-2 dark:text-muted-foreground-dark"
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 1, duration: 0.5 }}
@@ -93,7 +93,7 @@ export function ProjectSection() {
 
             {/* Project 2 */}
             <motion.div
-              className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow"
+              className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow dark:bg-dark-card dark:shadow-xl"
               initial={{ y: 50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.5, duration: 0.6 }}
@@ -107,7 +107,7 @@ export function ProjectSection() {
                 transition={{ delay: 0.6, duration: 0.5 }}
               />
               <motion.h3
-                className="text-2xl font-semibold mt-4"
+                className="text-2xl font-semibold mt-4 text-gray-900 dark:text-gray-100"
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.8, duration: 0.5 }}
@@ -115,7 +115,7 @@ export function ProjectSection() {
                 Project Two
               </motion.h3>
               <motion.p
-                className="text-muted-foreground mt-2"
+                className="text-muted-foreground mt-2 dark:text-muted-foreground-dark"
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 1, duration: 0.5 }}
@@ -137,7 +137,7 @@ export function ProjectSection() {
 
             {/* Project 3 */}
             <motion.div
-              className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow"
+              className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow dark:bg-dark-card dark:shadow-xl"
               initial={{ y: 50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.5, duration: 0.6 }}
@@ -151,7 +151,7 @@ export function ProjectSection() {
                 transition={{ delay: 0.6, duration: 0.5 }}
               />
               <motion.h3
-                className="text-2xl font-semibold mt-4"
+                className="text-2xl font-semibold mt-4 text-gray-900 dark:text-gray-100"
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 0.8, duration: 0.5 }}
@@ -159,7 +159,7 @@ export function ProjectSection() {
                 Project Three
               </motion.h3>
               <motion.p
-                className="text-muted-foreground mt-2"
+                className="text-muted-foreground mt-2 dark:text-muted-foreground-dark"
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ delay: 1, duration: 0.5 }}
