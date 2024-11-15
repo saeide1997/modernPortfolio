@@ -7,11 +7,13 @@ import { SkillSection } from "@/components/sections/skills"
 
 export default function Home() {
   return (
+    <>
     <div className="flex flex-col">
       <HeroSection />
       <AboutSection />
       <ProjectSection/>
       <SkillSection/>
     </div>
+    </>
   )
 }
