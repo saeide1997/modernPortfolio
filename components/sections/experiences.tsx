@@ -24,7 +24,24 @@ const experiences = [
     technologies: ["Figma", "Adobe XD", "UI/UX Design"],
     companyLogo: "/path/to/logo2.png",  // Add the path to your logo image
   },
+  {
+    role: "Full Stack Developer",
+    company: "Web Innovators",
+    duration: "Mar 2019 - May 2020",
+    description: "Worked on both front-end and back-end development of an e-commerce platform using Node.js, Express, and React.",
+    technologies: ["Node.js", "Express", "React", "MongoDB"],
+    companyLogo: "/path/to/logo3.png",  // Add the path to your logo image
+  },
+  {
+    role: "Backend Developer",
+    company: "DataTech Solutions",
+    duration: "Jan 2018 - Feb 2019",
+    description: "Focused on developing and optimizing APIs and database architecture using Java and PostgreSQL.",
+    technologies: ["Java", "Spring Boot", "PostgreSQL", "Docker"],
+    companyLogo: "/path/to/logo4.png",  // Add the path to your logo image
+  },
 ]
+
 
 export function ExperienceSection() {
   return (
