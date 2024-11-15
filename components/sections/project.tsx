@@ -6,20 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
 import { FaChevronRight, FaGithub, FaExternalLinkAlt } from 'react-icons/fa'
 
-type Project = {
-  id: number;
-  title: string;
-  description: string;
-  image: string;
-  color: string;
-  textColor: string;
-  details: string;
-  technologies: string[];
-  github: string;
-  live: string;
-}
-
-const projects: Project[] = [
+const projects = [
   {
     id: 1,
     title: "AI-Powered Task Manager",
@@ -59,8 +46,7 @@ const projects: Project[] = [
 ]
 
 export function ProjectSection() {
-  // Update useState to expect Project or null
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null)
+  const [selectedProject, setSelectedProject] = useState(null)
 
   return (
     <section id="projects" className="py-24 bg-gradient-to-br from-background to-secondary/30 transition-colors duration-300 overflow-hidden">
@@ -182,26 +168,22 @@ export function ProjectSection() {
                     ))}
                   </div>
                   <div className="flex justify-between">
-                    <Button 
-                      variant="outline" 
-                      size="lg" 
-                      className="w-full text-xs gap-2" 
-                      as="a" 
-                      href={selectedProject.github} 
+                    {/* GitHub Link */}
+                    <a
+                      className="w-full text-xs gap-2 inline-flex items-center justify-center border-2 border-secondary rounded-full py-2 px-4 hover:bg-secondary/10 transition"
+                      href={selectedProject.github}
                       target="_blank"
                     >
-                      <FaGithub className="h-5 w-5" /> GitHub
-                    </Button>
-                    <Button 
-                      variant="outline" 
-                      size="lg" 
-                      className="w-full text-xs gap-2 mt-4 md:mt-0" 
-                      as="a" 
-                      href={selectedProject.live} 
+                      <FaGithub className="h-5 w-5 mr-2" /> GitHub
+                    </a>
+                    {/* Live Demo Link */}
+                    <a
+                      className="w-full text-xs gap-2 inline-flex items-center justify-center border-2 border-secondary rounded-full py-2 px-4 hover:bg-secondary/10 transition"
+                      href={selectedProject.live}
                       target="_blank"
                     >
-                      <FaExternalLinkAlt className="h-5 w-5" /> Live Demo
-                    </Button>
+                      <FaExternalLinkAlt className="h-5 w-5 mr-2" /> Live Demo
+                    </a>
                   </div>
                 </DialogDescription>
               </DialogHeader>
