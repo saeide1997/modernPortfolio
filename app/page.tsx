@@ -1,6 +1,8 @@
 import { HeroSection } from "@/components/sections/hero"
 import { AboutSection } from "@/components/sections/about"
 import { ProjectSection } from "@/components/sections/project"
+import { SkillSection } from "@/components/sections/skills"
+
 
 
 export default function Home() {
@@ -9,6 +11,7 @@ export default function Home() {
       <HeroSection />
       <AboutSection />
       <ProjectSection/>
+      <SkillSection/>
     </div>
   )
 }
