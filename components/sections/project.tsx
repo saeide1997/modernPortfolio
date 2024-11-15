@@ -6,7 +6,20 @@ import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
 import { FaChevronRight, FaGithub, FaExternalLinkAlt } from 'react-icons/fa'
 
-const projects = [
+type Project = {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  color: string;
+  textColor: string;
+  details: string;
+  technologies: string[];
+  github: string;
+  live: string;
+};
+
+const projects: Project[] = [
   {
     id: 1,
     title: "AI-Powered Task Manager",
@@ -43,10 +56,11 @@ const projects = [
     github: "https://github.com/yourusername/blockchain-supply-chain",
     live: "https://blockchain-supply.example.com"
   }
-]
+];
 
 export function ProjectSection() {
-  const [selectedProject, setSelectedProject] = useState(null)
+  // Define selectedProject state to accept Project type or null
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   return (
     <section id="projects" className="py-24 bg-gradient-to-br from-background to-secondary/30 transition-colors duration-300 overflow-hidden">
@@ -133,7 +147,7 @@ export function ProjectSection() {
                   <Button 
                     size="lg" 
                     className={`group bg-white/20 hover:bg-white/30 ${project.textColor}`}
-                    onClick={() => setSelectedProject(project)}
+                    onClick={() => setSelectedProject(project)} // now works fine
                   >
                     View Details
                     <FaChevronRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -167,22 +181,18 @@ export function ProjectSection() {
                       </span>
                     ))}
                   </div>
-                  <div className="flex justify-between">
-                    {/* GitHub Link */}
-                    <a
-                      className="w-full text-xs gap-2 inline-flex items-center justify-center border-2 border-secondary rounded-full py-2 px-4 hover:bg-secondary/10 transition"
-                      href={selectedProject.github}
-                      target="_blank"
-                    >
-                      <FaGithub className="h-5 w-5 mr-2" /> GitHub
+                  <div className="flex gap-4">
+                    <a href={selectedProject.github} target="_blank" rel="noopener noreferrer">
+                      <Button className="group bg-gray-800 text-white hover:bg-gray-700">
+                        <FaGithub className="mr-2" />
+                        GitHub
+                      </Button>
                     </a>
-                    {/* Live Demo Link */}
-                    <a
-                      className="w-full text-xs gap-2 inline-flex items-center justify-center border-2 border-secondary rounded-full py-2 px-4 hover:bg-secondary/10 transition"
-                      href={selectedProject.live}
-                      target="_blank"
-                    >
-                      <FaExternalLinkAlt className="h-5 w-5 mr-2" /> Live Demo
+                    <a href={selectedProject.live} target="_blank" rel="noopener noreferrer">
+                      <Button className="group bg-blue-600 text-white hover:bg-blue-500">
+                        <FaExternalLinkAlt className="mr-2" />
+                        Live Demo
+                      </Button>
                     </a>
                   </div>
                 </DialogDescription>
