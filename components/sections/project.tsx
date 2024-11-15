@@ -6,7 +6,7 @@ import { ChevronRight } from "lucide-react"
 
 export function ProjectSection() {
   return (
-   <section id="about" className="py-24 bg-background">
+   <section id="project" className="py-24 bg-background">
     <motion.section
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
