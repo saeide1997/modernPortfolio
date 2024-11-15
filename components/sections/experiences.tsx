@@ -42,7 +42,6 @@ const experiences = [
   },
 ]
 
-
 export function ExperienceSection() {
   return (
     <section id="experiences" className="py-24 bg-background">
@@ -52,7 +51,7 @@ export function ExperienceSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="grid gap-12 md:grid-cols-2 items-center"
+          className="grid gap-12 md:grid-cols-2 items-center justify-center"
         >
           {/* Experience Cards */}
           <div className="space-y-8">
@@ -77,60 +76,66 @@ export function ExperienceSection() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.2 }}
               >
-                <Card className="p-6 bg-gradient-to-br from-accent to-primary shadow-xl rounded-lg">
-                  {/* Experience Header */}
-                  <div className="flex items-center space-x-4 mb-4">
-                    <div className="w-12 h-12 relative rounded-full overflow-hidden">
-                      <Image
-                        src={experience.companyLogo}
-                        alt={experience.company}
-                        layout="fill"
-                        objectFit="cover"
-                      />
+                <motion.div
+                  className="relative w-full h-full"
+                  whileHover={{ rotateY: 180 }}
+                  transition={{ duration: 0.6 }}
+                >
+                  <Card className="p-6 bg-gradient-to-br from-accent to-primary shadow-xl rounded-lg relative overflow-hidden transform-style-3d">
+                    {/* Experience Header */}
+                    <div className="flex items-center space-x-4 mb-4">
+                      <div className="w-12 h-12 relative rounded-full overflow-hidden">
+                        <Image
+                          src={experience.companyLogo}
+                          alt={experience.company}
+                          layout="fill"
+                          objectFit="cover"
+                        />
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-semibold text-light-foreground">{experience.role}</h3>
+                        <p className="text-sm text-muted-foreground">{experience.company}</p>
+                        <p className="text-sm text-muted-foreground">{experience.duration}</p>
+                      </div>
                     </div>
-                    <div>
-                      <h3 className="text-xl font-semibold text-light-foreground">{experience.role}</h3>
-                      <p className="text-sm text-muted-foreground">{experience.company}</p>
-                      <p className="text-sm text-muted-foreground">{experience.duration}</p>
+
+                    {/* Description */}
+                    <p className="text-sm text-muted-foreground mb-4">{experience.description}</p>
+
+                    {/* Technologies */}
+                    <div className="flex flex-wrap gap-2">
+                      {experience.technologies.map((tech, index) => (
+                        <motion.span
+                          key={tech}
+                          initial={{ opacity: 0, scale: 0.8 }}
+                          whileInView={{ opacity: 1, scale: 1 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.3, delay: index * 0.1 }}
+                          className="px-3 py-1 bg-secondary rounded-full text-sm text-light-foreground"
+                        >
+                          {tech}
+                        </motion.span>
+                      ))}
                     </div>
-                  </div>
 
-                  {/* Description */}
-                  <p className="text-sm text-muted-foreground mb-4">{experience.description}</p>
-
-                  {/* Technologies */}
-                  <div className="flex flex-wrap gap-2">
-                    {experience.technologies.map((tech, index) => (
-                      <motion.span
-                        key={tech}
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.3, delay: index * 0.1 }}
-                        className="px-3 py-1 bg-secondary rounded-full text-sm text-light-foreground"
-                      >
-                        {tech}
-                      </motion.span>
-                    ))}
-                  </div>
-
-                  {/* Action Buttons */}
-                  <div className="flex flex-wrap gap-4 mt-6">
-                    <Button variant="outline" className="text-light-foreground">
-                      <Calendar className="mr-2 h-4 w-4" />
-                      View Details
-                    </Button>
-                    <Button variant="ghost" size="icon" className="text-light-foreground">
-                      <Github className="h-5 w-5" />
-                    </Button>
-                    <Button variant="ghost" size="icon" className="text-light-foreground">
-                      <Linkedin className="h-5 w-5" />
-                    </Button>
-                    <Button variant="ghost" size="icon" className="text-light-foreground">
-                      <Mail className="h-5 w-5" />
-                    </Button>
-                  </div>
-                </Card>
+                    {/* Action Buttons */}
+                    <div className="flex flex-wrap gap-4 mt-6">
+                      <Button variant="outline" className="text-light-foreground">
+                        <Calendar className="mr-2 h-4 w-4" />
+                        View Details
+                      </Button>
+                      <Button variant="ghost" size="icon" className="text-light-foreground">
+                        <Github className="h-5 w-5" />
+                      </Button>
+                      <Button variant="ghost" size="icon" className="text-light-foreground">
+                        <Linkedin className="h-5 w-5" />
+                      </Button>
+                      <Button variant="ghost" size="icon" className="text-light-foreground">
+                        <Mail className="h-5 w-5" />
+                      </Button>
+                    </div>
+                  </Card>
+                </motion.div>
               </motion.div>
             ))}
           </div>
