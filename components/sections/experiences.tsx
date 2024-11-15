@@ -7,6 +7,19 @@ import { Card } from "@/components/ui/card"
 import { GitlabIcon as GitHub, Linkedin, Mail, Calendar, X } from 'lucide-react'
 import Image from "next/image"
 
+
+// Define the type for an experience
+type Experience = {
+  role: string;
+  company: string;
+  duration: string;
+  description: string;
+  technologies: string[];
+  companyLogo: string;
+  color: string;
+};
+
+
 const experiences = [
   {
     role: "Frontend Developer",
@@ -71,7 +84,7 @@ const cardVariants = {
 }
 
 export function ExperienceSection() {
-  const [selectedExperience, setSelectedExperience] = useState(null)
+  const [selectedExperience, setSelectedExperience] = useState<Experience | null>(null);
 
   return (
     <section id="experiences" className="py-24 bg-gradient-to-br from-gray-900 to-gray-800 min-h-screen">
