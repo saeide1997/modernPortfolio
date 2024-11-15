@@ -6,7 +6,20 @@ import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
 import { FaChevronRight, FaGithub, FaExternalLinkAlt } from 'react-icons/fa'
 
-const projects = [
+type Project = {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  color: string;
+  textColor: string;
+  details: string;
+  technologies: string[];
+  github: string;
+  live: string;
+}
+
+const projects: Project[] = [
   {
     id: 1,
     title: "AI-Powered Task Manager",
@@ -46,7 +59,8 @@ const projects = [
 ]
 
 export function ProjectSection() {
-  const [selectedProject, setSelectedProject] = useState(null)
+  // Update useState to expect Project or null
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null)
 
   return (
     <section id="projects" className="py-24 bg-gradient-to-br from-background to-secondary/30 transition-colors duration-300 overflow-hidden">
@@ -170,16 +184,23 @@ export function ProjectSection() {
                   <div className="flex justify-between">
                     <Button 
                       variant="outline" 
-                      onClick={() => window.open(selectedProject.github, '_blank')}
+                      size="lg" 
+                      className="w-full text-xs gap-2" 
+                      as="a" 
+                      href={selectedProject.github} 
+                      target="_blank"
                     >
-                      <FaGithub className="mr-2" />
-                      View on GitHub
+                      <FaGithub className="h-5 w-5" /> GitHub
                     </Button>
                     <Button 
-                      onClick={() => window.open(selectedProject.live, '_blank')}
+                      variant="outline" 
+                      size="lg" 
+                      className="w-full text-xs gap-2 mt-4 md:mt-0" 
+                      as="a" 
+                      href={selectedProject.live} 
+                      target="_blank"
                     >
-                      <FaExternalLinkAlt className="mr-2" />
-                      Live Demo
+                      <FaExternalLinkAlt className="h-5 w-5" /> Live Demo
                     </Button>
                   </div>
                 </DialogDescription>
