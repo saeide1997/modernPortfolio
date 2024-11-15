@@ -34,7 +34,7 @@ interface Skill {
   projects: string[]
 }
 
-export function SkillSection() {
+export  function SkillSection() {
   const [showLevel, setShowLevel] = useState<boolean>(false)
   const [expandedSkill, setExpandedSkill] = useState<string | null>(null)
   const [visibleSkills, setVisibleSkills] = useState<number>(3)
@@ -204,96 +204,25 @@ export function SkillSection() {
                     ease: "easeInOut",
                   }}
                 />
-                <motion.div 
-                  className="p-6 relative z-10"
-                  animate={{ y: [0, 5, 0] }}
-                  transition={{
-                    repeat: Infinity,
-                    duration: 2,
-                    ease: "easeInOut",
-                  }}
-                >
-                  <motion.div
-                    className="flex items-center justify-center mb-4"
-                    initial={{ opacity: 0, rotate: -180 }}
-                    animate={{ opacity: 1, rotate: 0 }}
-                    transition={{ delay: 0.5, duration: 0.5 }}
-                  >
-                    <img src={`/placeholder.svg?height=48&width=48`} alt={skill.name} className="w-12 h-12" />
-                  </motion.div>
-                  <motion.h3
-                    className="text-2xl font-semibold text-white mb-2"
-                    initial={{ y: 20, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 0.6, duration: 0.5 }}
-                  >
-                    {skill.name}
-                  </motion.h3>
-                  {showLevel && (
-                    <motion.div
-                      className="w-full bg-white/30 rounded-full h-2.5 mb-4 overflow-hidden"
-                      initial={{ width: 0 }}
-                      animate={{ width: "100%" }}
-                      transition={{ delay: 0.7, duration: 1 }}
-                    >
-                      <motion.div
-                        className="bg-primary h-2.5 rounded-full"
-                        initial={{ width: 0 }}
-                        animate={{ width: `${skill.level}%` }}
-                        transition={{ delay: 1, duration: 1.5, ease: "easeOut" }}
-                      />
-                    </motion.div>
-                  )}
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.8, duration: 0.5 }}
-                    className="mt-4"
-                  >
-                    <Button 
-                      size="sm" 
-                      className="group relative overflow-hidden transition-colors duration-300"
-                      onClick={() => toggleSkillExpansion(skill.name)}
-                      style={{
-                        backgroundColor: `hsl(${(index * 50) % 360}, 70%, 50%)`,
-                      }}
-                    >
-                      <span className="relative z-10">
-                        {expandedSkill === skill.name ? "Less Details" : "More Details"}
-                      </span>
-                      <motion.span
-                        className="absolute inset-0"
-                        initial={{ x: "100%" }}
-                        whileHover={{ x: 0 }}
-                        transition={{ duration: 0.3 }}
-                        style={{
-                          backgroundColor: `hsl(${((index * 50 + 180) % 360)}, 70%, 50%)`,
-                        }}
-                      />
-                      {expandedSkill === skill.name ? (
-                        <X className="ml-2 h-4 w-4 transition-transform group-hover:rotate-90 relative z-10" />
-                      ) : (
-                        <ChevronRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1 relative z-10" />
-                      )}
-                    </Button>
-                  </motion.div>
-                </motion.div>
                 <AnimatePresence>
-                  {expandedSkill === skill.name && (
+                  {expandedSkill === skill.name ? (
                     <motion.div
                       initial={{ opacity: 0, y: -50 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -50 }}
                       transition={{ duration: 0.3 }}
-                      className="absolute inset-0 p-6 overflow-y-auto scrollbar-thin scrollbar-thumb-white scrollbar-track-transparent"
+                      className="absolute inset-0 p-6 overflow-y-auto scrollbar-thin scrollbar-thumb-white scrollbar-track-transparent max-h-full"
                       style={{
-                        backgroundColor: `hsl(${(index * 50) % 360}, 70%, 50%)`,
+                        backgroundColor: `hsla(${(index * 50) % 360}, 70%, 50%, 0.95)`,
                       }}
                     >
                       <Button 
                         size="sm"
-                        className="absolute top-2 right-2 bg-white/20 hover:bg-white/40 transition-colors duration-300"
-                        onClick={() => toggleSkillExpansion(skill.name)}
+                        className="absolute top-2 right-2 bg-white/20 hover:bg-white/40 transition-colors duration-300 z-10"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          toggleSkillExpansion(skill.name);
+                        }}
                       >
                         <X className="h-4 w-4" />
                       </Button>
@@ -304,9 +233,36 @@ export function SkillSection() {
                         {skill.description}
                       </p>
                       {showLevel && (
-                        <p className="text-white mb-4 font-semibold text-xl">
-                          Proficiency: {skill.level}% 🚀
-                        </p>
+                        <motion.div className="w-full bg-white/30 rounded-full h-4 mb-4 overflow-hidden">
+                          <motion.div
+                            className="h-full rounded-full"
+                            style={{
+                              backgroundColor: `hsl(${skill.level * 1.2}, 70%, 50%)`,
+                              width: `${skill.level}%`,
+                            }}
+                            initial={{ width: 0 }}
+                            animate={{ width: `${skill.level}%` }}
+                            transition={{ duration: 1, ease: "easeOut" }}
+                          />
+                        </motion.div>
+                      )}
+                      {showLevel && (
+                        <motion.p
+                          className="text-white mb-4 font-semibold text-xl"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{ delay: 0.5, duration: 0.5 }}
+                        >
+                          Proficiency: 
+                          <motion.span
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 1, duration: 0.5 }}
+                          >
+                            {skill.level}%
+                          </motion.span>
+                          🚀
+                        </motion.p>
                       )}
                       <h5 className="text-white font-semibold mb-2 text-xl">Related Projects 📂:</h5>
                       <ul className="list-none text-white">
@@ -322,6 +278,81 @@ export function SkillSection() {
                           </motion.li>
                         ))}
                       </ul>
+                    </motion.div>
+                  ) : (
+                    <motion.div 
+                      className="p-6 relative z-10"
+                      animate={{ y: [0, 5, 0] }}
+                      transition={{
+                        repeat: Infinity,
+                        duration: 2,
+                        ease: "easeInOut",
+                      }}
+                    >
+                      <motion.div
+                        className="flex items-center justify-center mb-4"
+                        initial={{ opacity: 0, rotate: -180 }}
+                        animate={{ opacity: 1, rotate: 0 }}
+                        transition={{ delay: 0.5, duration: 0.5 }}
+                      >
+                        <img src={`/placeholder.svg?height=48&width=48`} alt={skill.name} className="w-12 h-12" />
+                      </motion.div>
+                      <motion.h3
+                        className="text-2xl font-semibold text-white mb-2"
+                        initial={{ y: 20, opacity: 0 }}
+                        animate={{ y: 0, opacity: 1 }}
+                        transition={{ delay: 0.6, duration: 0.5 }}
+                      >
+                        {skill.name}
+                      </motion.h3>
+                      {showLevel && (
+                        <motion.div
+                          className="w-full bg-white/30 rounded-full h-2.5 mb-4 overflow-hidden"
+                          initial={{ width: 0 }}
+                          animate={{ width: "100%" }}
+                          transition={{ delay: 0.7, duration: 1 }}
+                        >
+                          <motion.div
+                            className="bg-primary h-2.5 rounded-full"
+                            initial={{ width: 0 }}
+                            animate={{ width: `${skill.level}%` }}
+                            transition={{ delay: 1, duration: 1.5, ease: "easeOut" }}
+                          />
+                        </motion.div>
+                      )}
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.8, duration: 0.5 }}
+                        className="mt-4"
+                      >
+                        <Button 
+                          size="sm" 
+                          className="group relative overflow-hidden transition-colors duration-300"
+                          onClick={() => toggleSkillExpansion(skill.name)}
+                          style={{
+                            backgroundColor: `hsl(${(index * 50) % 360}, 70%, 50%)`,
+                          }}
+                        >
+                          <span className="relative z-10">
+                            {expandedSkill === skill.name ? "Less Details" : "More Details"}
+                          </span>
+                          <motion.span
+                            className="absolute inset-0"
+                            initial={{ x: "100%" }}
+                            whileHover={{ x: 0 }}
+                            transition={{ duration: 0.3 }}
+                            style={{
+                              backgroundColor: `hsl(${((index * 50 + 180) % 360)}, 70%, 50%)`,
+                            }}
+                          />
+                          {expandedSkill === skill.name ? (
+                            <X className="ml-2 h-4 w-4 transition-transform group-hover:rotate-90 relative z-10" />
+                          ) : (
+                            <ChevronRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1 relative z-10" />
+                          )}
+                        </Button>
+                      </motion.div>
                     </motion.div>
                   )}
                 </AnimatePresence>
