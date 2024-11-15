@@ -1,29 +1,92 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { ChevronRight } from "lucide-react"
+import { ChevronRight, ChevronDown, X } from 'lucide-react'
 
 interface Skill {
   name: string
   level: number
   icon: string
+  description: string
+  projects: string[]
 }
 
-export function SkillSection() {
+export default function SkillSection() {
   const [showLevel, setShowLevel] = useState<boolean>(false)
+  const [expandedSkill, setExpandedSkill] = useState<string | null>(null)
+  const [visibleSkills, setVisibleSkills] = useState<number>(3)
 
   const skills: Skill[] = [
-    { name: "React", level: 90, icon: "react-icon" },
-    { name: "Node.js", level: 85, icon: "nodejs-icon" },
-    { name: "CSS", level: 80, icon: "css-icon" },
-    { name: "JavaScript", level: 95, icon: "js-icon" },
-    { name: "TypeScript", level: 90, icon: "ts-icon" },
+    { 
+      name: "React", 
+      level: 90, 
+      icon: "react-icon", 
+      description: "Building interactive UIs with React",
+      projects: ["E-commerce Platform", "Social Media Dashboard", "Portfolio Website"]
+    },
+    { 
+      name: "Node.js", 
+      level: 85, 
+      icon: "nodejs-icon", 
+      description: "Server-side JavaScript with Node.js",
+      projects: ["RESTful API", "Real-time Chat Application", "Task Management System"]
+    },
+    { 
+      name: "CSS", 
+      level: 80, 
+      icon: "css-icon", 
+      description: "Styling web applications with CSS",
+      projects: ["Responsive Landing Page", "CSS Animation Library", "Custom UI Component Kit"]
+    },
+    { 
+      name: "JavaScript", 
+      level: 95, 
+      icon: "js-icon", 
+      description: "Core language for web development",
+      projects: ["Interactive Data Visualization", "Browser Extension", "JavaScript Game Engine"]
+    },
+    { 
+      name: "TypeScript", 
+      level: 90, 
+      icon: "ts-icon", 
+      description: "Typed superset of JavaScript",
+      projects: ["Enterprise-level CRM", "TypeScript Library", "Angular Application"]
+    },
+    { 
+      name: "GraphQL", 
+      level: 75, 
+      icon: "graphql-icon", 
+      description: "Efficient API queries with GraphQL",
+      projects: ["GraphQL API Gateway", "Real-time Data Subscription", "GraphQL Client Integration"]
+    },
+    { 
+      name: "Python", 
+      level: 70, 
+      icon: "python-icon", 
+      description: "Versatile programming language",
+      projects: ["Data Analysis Tool", "Machine Learning Model", "Web Scraping Script"]
+    },
+    { 
+      name: "Docker", 
+      level: 65, 
+      icon: "docker-icon", 
+      description: "Containerization for applications",
+      projects: ["Microservices Architecture", "CI/CD Pipeline", "Development Environment Setup"]
+    },
   ]
 
+  const toggleSkillExpansion = (skillName: string) => {
+    setExpandedSkill(expandedSkill === skillName ? null : skillName)
+  }
+
+  const showMoreSkills = () => {
+    setVisibleSkills(prevVisible => Math.min(prevVisible + 3, skills.length))
+  }
+
   return (
-    <section id="skills" className="py-24 bg-background dark:bg-dark-background">
+    <section id="skills" className="py-24 bg-gradient-to-br from-background to-secondary overflow-hidden">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -35,7 +98,7 @@ export function SkillSection() {
             initial={{ scale: 0.5, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.5 }}
-            className="text-3xl md:text-5xl font-bold mb-6 text-gray-900 dark:text-gray-100"
+            className="text-3xl md:text-5xl font-bold mb-6 text-primary"
           >
             My Skills
           </motion.h2>
@@ -43,7 +106,7 @@ export function SkillSection() {
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.2, duration: 0.5 }}
-            className="text-lg md:text-xl text-muted-foreground mb-8 dark:text-muted-foreground-dark"
+            className="text-lg md:text-xl text-muted-foreground mb-8"
           >
             Here's a collection of my skills with their proficiency levels.
           </motion.p>
@@ -58,55 +121,163 @@ export function SkillSection() {
           transition={{ delay: 0.3, duration: 0.5 }}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
         >
-          {skills.map((skill, index) => (
-            <motion.div
-              key={index}
-              className="bg-gradient-to-r p-6 rounded-lg shadow-xl hover:shadow-2xl transition-shadow"
-              style={{ background: `hsl(${(index * 50) % 360}, 70%, 50%)` }} // Unique color for each card
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: index * 0.2, duration: 0.6 }}
-            >
+          <AnimatePresence>
+            {skills.slice(0, visibleSkills).map((skill, index) => (
               <motion.div
-                className="flex items-center justify-center mb-4"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.5, duration: 0.5 }}
+                key={skill.name}
+                layout
+                initial={{ scale: 0.8, opacity: 0, y: 50 }}
+                animate={{ 
+                  scale: 1, 
+                  opacity: 1, 
+                  y: 0,
+                  transition: { 
+                    delay: index * 0.1, 
+                    duration: 0.5,
+                    type: "spring",
+                    stiffness: 100,
+                    damping: 10
+                  }
+                }}
+                exit={{ scale: 0.8, opacity: 0, transition: { duration: 0.3 } }}
+                whileHover={{ 
+                  scale: 1.05, 
+                  boxShadow: "0 10px 20px rgba(0,0,0,0.2)",
+                  transition: { duration: 0.3 }
+                }}
+                className="relative overflow-hidden rounded-lg shadow-xl transition-all duration-300"
+                style={{
+                  background: `linear-gradient(135deg, hsl(${(index * 50) % 360}, 70%, 50%), hsl(${
+                    ((index * 50 + 180) % 360)
+                  }, 70%, 50%))`,
+                }}
               >
-                <img src={`/icons/${skill.icon}.svg`} alt={skill.name} className="w-12 h-12" />
-              </motion.div>
-              <motion.h3
-                className="text-2xl font-semibold text-white"
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.6, duration: 0.5 }}
-              >
-                {skill.name}
-              </motion.h3>
-              {showLevel && (
-                <motion.p
-                  className="text-white mt-2"
-                  initial={{ y: 20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.7, duration: 0.5 }}
+                <motion.div 
+                  className="absolute inset-0 bg-white/10"
+                  animate={{ 
+                    opacity: [0.5, 0.8, 0.5],
+                    scale: [1, 1.2, 1],
+                  }} 
+                  transition={{ 
+                    repeat: Infinity,
+                    duration: 3,
+                    ease: "easeInOut",
+                  }}
+                />
+                <motion.div 
+                  className="p-6 relative z-10"
+                  animate={{ y: [0, 5, 0] }}
+                  transition={{
+                    repeat: Infinity,
+                    duration: 2,
+                    ease: "easeInOut",
+                  }}
                 >
-                  Proficiency: {skill.level}%
-                </motion.p>
-              )}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.8, duration: 0.5 }}
-                className="mt-4"
-              >
-                <Button size="sm" className="group">
-                  More Details
-                  <ChevronRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </Button>
+                  <motion.div
+                    className="flex items-center justify-center mb-4"
+                    initial={{ opacity: 0, rotate: -180 }}
+                    animate={{ opacity: 1, rotate: 0 }}
+                    transition={{ delay: 0.5, duration: 0.5 }}
+                  >
+                    <img src={`/placeholder.svg?height=48&width=48`} alt={skill.name} className="w-12 h-12" />
+                  </motion.div>
+                  <motion.h3
+                    className="text-2xl font-semibold text-white mb-2"
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ delay: 0.6, duration: 0.5 }}
+                  >
+                    {skill.name}
+                  </motion.h3>
+                  {showLevel && (
+                    <motion.div
+                      className="w-full bg-white/30 rounded-full h-2.5 mb-4 overflow-hidden"
+                      initial={{ width: 0 }}
+                      animate={{ width: "100%" }}
+                      transition={{ delay: 0.7, duration: 1 }}
+                    >
+                      <motion.div
+                        className="bg-primary h-2.5 rounded-full"
+                        initial={{ width: 0 }}
+                        animate={{ width: `${skill.level}%` }}
+                        transition={{ delay: 1, duration: 1.5, ease: "easeOut" }}
+                      />
+                    </motion.div>
+                  )}
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.8, duration: 0.5 }}
+                    className="mt-4"
+                  >
+                    <Button 
+                      size="sm" 
+                      className="group relative overflow-hidden"
+                      onClick={() => toggleSkillExpansion(skill.name)}
+                    >
+                      <span className="relative z-10">
+                        {expandedSkill === skill.name ? "Less Details" : "More Details"}
+                      </span>
+                      <motion.span
+                        className="absolute inset-0 bg-white"
+                        initial={{ x: "100%" }}
+                        whileHover={{ x: 0 }}
+                        transition={{ duration: 0.3 }}
+                      />
+                      {expandedSkill === skill.name ? (
+                        <X className="ml-2 h-4 w-4 transition-transform group-hover:rotate-90 relative z-10" />
+                      ) : (
+                        <ChevronRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1 relative z-10" />
+                      )}
+                    </Button>
+                  </motion.div>
+                </motion.div>
+                <AnimatePresence>
+                  {expandedSkill === skill.name && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="p-6 bg-white/10 backdrop-blur-sm"
+                    >
+                      <p className="text-white mb-4">{skill.description}</p>
+                      {showLevel && (
+                        <p className="text-white mb-4 font-semibold">Proficiency: {skill.level}%</p>
+                      )}
+                      <h4 className="text-white font-semibold mb-2">Related Projects:</h4>
+                      <ul className="list-disc list-inside text-white">
+                        {skill.projects.map((project, index) => (
+                          <motion.li
+                            key={index}
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.1 * index }}
+                          >
+                            {project}
+                          </motion.li>
+                        ))}
+                      </ul>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </motion.div>
-            </motion.div>
-          ))}
+            ))}
+          </AnimatePresence>
         </motion.div>
+        {visibleSkills < skills.length && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5, duration: 0.5 }}
+            className="mt-8 text-center"
+          >
+            <Button onClick={showMoreSkills} size="lg" className="group">
+              Show More
+              <ChevronDown className="ml-2 h-5 w-5 transition-transform group-hover:translate-y-1" />
+            </Button>
+          </motion.div>
+        )}
       </motion.div>
     </section>
   )
