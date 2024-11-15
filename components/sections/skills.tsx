@@ -34,7 +34,7 @@ interface Skill {
   projects: string[]
 }
 
-export default function SkillSection() {
+export function SkillSection() {
   const [showLevel, setShowLevel] = useState<boolean>(false)
   const [expandedSkill, setExpandedSkill] = useState<string | null>(null)
   const [visibleSkills, setVisibleSkills] = useState<number>(3)
