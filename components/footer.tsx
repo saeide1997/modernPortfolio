@@ -66,7 +66,7 @@ export function Footer() {
               <div className={`absolute -inset-2 rounded-full opacity-50 animate-pulse bg-gradient-to-r ${glowColors[profileGlow]} blur-md transition-all duration-1000`}></div>
               <div className="absolute -inset-2 rounded-full opacity-25 animate-ping bg-gradient-to-r from-primary via-secondary to-primary"></div>
             </div>
-            {[
+            {[ 
               "© 2024 Folio Motion. All rights reserved.",
               "Created by ANIRUDDHA ADAK",
               "Phone: +917029155691",
@@ -86,7 +86,7 @@ export function Footer() {
           </div>
           <div className="flex flex-col items-center space-y-4">
             <div className="flex space-x-4">
-              {[
+              {[ 
                 { icon: Github, href: "https://github.com/aniruddhaadak80", color: "text-purple-500" },
                 { icon: Linkedin, href: "https://linkedin.com/in/aniruddha-adak", color: "text-blue-500" },
                 { icon: Twitter, href: "https://twitter.com/aniruddha_adak", color: "text-sky-500" },
