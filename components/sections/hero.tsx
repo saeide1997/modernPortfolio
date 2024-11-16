@@ -57,11 +57,11 @@ export function HeroSection() {
             transition={{ delay: 0.4, duration: 0.5 }}
             className="flex justify-center space-x-4"
           >
-            <Button size="lg" className="group">
+            <Button id="#projects" size="lg" className="group">
               View Projects
               <ChevronDown className="ml-2 h-4 w-4 transition-transform group-hover:translate-y-1" />
             </Button>
-            <Button size="lg" variant="outline">
+            <Button id="#contact" size="lg" variant="outline">
               Contact Me
             </Button>
           </motion.div>
