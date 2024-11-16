@@ -6,23 +6,26 @@ import { TypeAnimation } from "react-type-animation"
 import { Button } from "@/components/ui/button"
 import { ChevronDown, Sun, Moon, Github, Linkedin, Twitter } from "lucide-react"
 import Particles from "react-tsparticles"
-import { loadFull, Engine } from "tsparticles" // Import Engine from tsparticles
+import { loadFull } from "react-tsparticles"
+import { Engine } from "tsparticles-engine"  // Corrected import from tsparticles-engine
 
 export function HeroSection() {
   const [theme, setTheme] = useState("dark")
   const controls = useAnimation()
 
+  // Animate when the component is loaded
   useEffect(() => {
     controls.start({ opacity: 1, y: 0 })
   }, [controls])
 
+  // Toggle theme between light and dark
   const toggleTheme = () => {
     setTheme(theme === "dark" ? "light" : "dark")
     document.documentElement.classList.toggle("dark")
   }
 
-  // Explicitly define the type for the 'main' parameter
-  const particlesInit = async (main: Engine) => {  // 'main' is of type 'Engine'
+  // Initialize particles with full configuration
+  const particlesInit = async (main: Engine) => {
     await loadFull(main)
   }
 
@@ -31,7 +34,9 @@ export function HeroSection() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className={`relative min-h-screen flex items-center justify-center overflow-hidden ${theme === "dark" ? "bg-gray-900 text-white" : "bg-gray-100 text-gray-900"}`}
+      className={`relative min-h-screen flex items-center justify-center overflow-hidden ${
+        theme === "dark" ? "bg-gray-900 text-white" : "bg-gray-100 text-gray-900"
+      }`}
     >
       {/* Particle background */}
       <Particles
@@ -109,8 +114,10 @@ export function HeroSection() {
         }}
       />
 
+      {/* Content Section */}
       <div className="container mx-auto px-4 z-10">
         <div className="text-center">
+          {/* Main Heading */}
           <motion.h1
             initial={{ scale: 0.5, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -120,6 +127,7 @@ export function HeroSection() {
             Creative Developer
           </motion.h1>
 
+          {/* Animated Subheading */}
           <motion.div
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -141,6 +149,7 @@ export function HeroSection() {
             />
           </motion.div>
 
+          {/* Action Buttons */}
           <motion.div
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -156,6 +165,7 @@ export function HeroSection() {
             </Button>
           </motion.div>
 
+          {/* Social Media Icons */}
           <motion.div
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -180,7 +190,7 @@ export function HeroSection() {
         </div>
       </div>
 
-      {/* Theme toggle */}
+      {/* Theme Toggle Button */}
       <motion.button
         className="absolute top-4 right-4 p-2 rounded-full bg-primary/10 text-primary"
         whileHover={{ scale: 1.1 }}
@@ -190,7 +200,7 @@ export function HeroSection() {
         {theme === "dark" ? <Sun className="h-6 w-6" /> : <Moon className="h-6 w-6" />}
       </motion.button>
 
-      {/* Scroll indicator */}
+      {/* Scroll Indicator */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
