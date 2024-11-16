@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import { TypeAnimation } from "react-type-animation"
 import { Button } from "@/components/ui/button"
 import { ChevronDown } from "lucide-react"
+import {Link} from "next/link"
 
 export function HeroSection() {
   return (
@@ -57,11 +58,13 @@ export function HeroSection() {
             transition={{ delay: 0.4, duration: 0.5 }}
             className="flex justify-center space-x-4"
           >
-            <Button id="#projects" size="lg" className="group">
+            <Link href={"/#projects"}>
+            <Button  size="lg" className="group">
               View Projects
               <ChevronDown className="ml-2 h-4 w-4 transition-transform group-hover:translate-y-1" />
             </Button>
-            <Button id="#contact" size="lg" variant="outline">
+           </Link>
+            <Button  size="lg" variant="outline">
               Contact Me
             </Button>
           </motion.div>
