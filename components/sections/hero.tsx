@@ -6,7 +6,7 @@ import { TypeAnimation } from "react-type-animation"
 import { Button } from "@/components/ui/button"
 import { ChevronDown, Sun, Moon, Github, Linkedin, Twitter } from "lucide-react"
 import Particles from "react-tsparticles"
-import { loadFull } from "tsparticles"
+import { loadFull, Engine } from "tsparticles" // Import Engine from tsparticles
 
 export function HeroSection() {
   const [theme, setTheme] = useState("dark")
@@ -21,7 +21,8 @@ export function HeroSection() {
     document.documentElement.classList.toggle("dark")
   }
 
-  const particlesInit = async (main) => {
+  // Explicitly define the type for the 'main' parameter
+  const particlesInit = async (main: Engine) => {  // 'main' is of type 'Engine'
     await loadFull(main)
   }
 
@@ -30,9 +31,7 @@ export function HeroSection() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className={`relative min-h-screen flex items-center justify-center overflow-hidden ${
-        theme === "dark" ? "bg-gray-900 text-white" : "bg-gray-100 text-gray-900"
-      }`}
+      className={`relative min-h-screen flex items-center justify-center overflow-hidden ${theme === "dark" ? "bg-gray-900 text-white" : "bg-gray-100 text-gray-900"}`}
     >
       {/* Particle background */}
       <Particles
