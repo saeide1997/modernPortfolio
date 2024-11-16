@@ -64,9 +64,11 @@ export function HeroSection() {
               <ChevronDown className="ml-2 h-4 w-4 transition-transform group-hover:translate-y-1" />
             </Button>
            </Link>
+            <Link href={"/#contact"}>
             <Button  size="lg" variant="outline">
               Contact Me
             </Button>
+              </Link>
           </motion.div>
         </div>
       </div>
