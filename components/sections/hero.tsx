@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 import { TypeAnimation } from "react-type-animation"
 import { Button } from "@/components/ui/button"
 import { ChevronDown } from "lucide-react"
-import {Link} from "next/link"
+import Link from "next/link"
 
 export function HeroSection() {
   return (
