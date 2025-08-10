@@ -2,8 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
+
+@font-face {
+  font-family: 'Samim';
+  src: url('../fonts/Samim.eot'); 
+  src: url('../fonts/Samim.eot') format('embedded-opentype'),
+  url('../fonts/Samim.woff') format('woff'),
+  url('../fonts/Samim.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Samim-Bold';
+  src: url('../fonts/Samim-Bold.eot'); 
+  src: url('../fonts/Samim-Bold.eot') format('embedded-opentype'),
+  url('../fonts/Samim-Bold.woff') format('woff'),
+  url('../fonts/Samim-Bold.ttf') format('truetype');
+}
+
+body{
+  font-family: samim !important;
+}
 @layer base {
   :root {
+    direction: rtl;
     --background: 0 0% 100%;
     --foreground: 0 0% 3.9%;
     --card: 0 0% 100%;
@@ -79,4 +100,11 @@
   background-image: linear-gradient(to right, rgb(255 255 255 / 0.05) 1px, transparent 1px),
     linear-gradient(to bottom, rgb(255 255 255 / 0.05) 1px, transparent 1px);
   background-size: 24px 24px;
+}
+
+.ltr{
+  direction: ltr !important;
+}
+.rtl{
+  direction: rtl !important;
 }

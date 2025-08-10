@@ -8,7 +8,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { FaPaperPlane, FaCheckCircle } from "react-icons/fa";
 
-// Define types for form state and errors
 type FormState = {
   name: string;
   email: string;
@@ -34,11 +33,11 @@ export function ContactSection() {
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
-    if (!formState.name.trim()) newErrors.name = "Name is required";
-    if (!formState.email.trim()) newErrors.email = "Email is required";
+    if (!formState.name.trim()) newErrors.name = "لطفاً نام خودت رو وارد کن";
+    if (!formState.email.trim()) newErrors.email = "ایمیل الزامی‌ست";
     else if (!/\S+@\S+\.\S+/.test(formState.email))
-      newErrors.email = "Email is invalid";
-    if (!formState.message.trim()) newErrors.message = "Message is required";
+      newErrors.email = "فرمت ایمیل درست نیست";
+    if (!formState.message.trim()) newErrors.message = "پیامت خالیه!";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -47,10 +46,10 @@ export function ContactSection() {
     e.preventDefault();
     if (validateForm()) {
       setIsSubmitting(true);
-      await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulate API call
+      await new Promise((resolve) => setTimeout(resolve, 2000)); // شبیه‌سازی ارسال
       setIsSubmitting(false);
       setIsSubmitted(true);
-      setFormState({ name: "", email: "", message: "" }); // Reset form
+      setFormState({ name: "", email: "", message: "" }); // پاک‌سازی فرم
     }
   };
 
@@ -58,7 +57,7 @@ export function ContactSection() {
     const { name, value } = e.target;
     setFormState((prev) => ({ ...prev, [name]: value }));
     if (errors[name as keyof FormErrors]) {
-      setErrors((prev) => ({ ...prev, [name]: "" })); // Clear errors
+      setErrors((prev) => ({ ...prev, [name]: "" }));
     }
   };
 
@@ -87,7 +86,7 @@ export function ContactSection() {
         >
           <div className="p-8 sm:p-12">
             <motion.h2 className="text-3xl font-bold text-center mb-8 text-primary" variants={childVariants}>
-              Get in Touch
+              ارتباط با من
             </motion.h2>
 
             {isSubmitted ? (
@@ -98,14 +97,14 @@ export function ContactSection() {
                 transition={{ type: "spring", stiffness: 100, damping: 15 }}
               >
                 <FaCheckCircle className="w-16 h-16 mx-auto mb-4" />
-                <h3 className="text-2xl font-semibold mb-2">Thank You!</h3>
-                <p>Your message has been sent successfully. We'll get back to you soon.</p>
+                <h3 className="text-2xl font-semibold mb-2">مرسی ازت!</h3>
+                <p>پیامت با موفقیت ارسال شد. به‌زودی باهات تماس می‌گیرم.</p>
               </motion.div>
             ) : (
               <form onSubmit={handleSubmit}>
                 <motion.div className="space-y-6" variants={formVariants}>
                   <motion.div variants={childVariants}>
-                    <Label htmlFor="name" className="text-primary">Name</Label>
+                    <Label htmlFor="name" className="text-primary">نام</Label>
                     <Input
                       id="name"
                       name="name"
@@ -117,7 +116,7 @@ export function ContactSection() {
                   </motion.div>
 
                   <motion.div variants={childVariants}>
-                    <Label htmlFor="email" className="text-primary">Email</Label>
+                    <Label htmlFor="email" className="text-primary">ایمیل</Label>
                     <Input
                       id="email"
                       name="email"
@@ -130,7 +129,7 @@ export function ContactSection() {
                   </motion.div>
 
                   <motion.div variants={childVariants}>
-                    <Label htmlFor="message" className="text-primary">Message</Label>
+                    <Label htmlFor="message" className="text-primary">پیام</Label>
                     <Textarea
                       id="message"
                       name="message"
@@ -156,7 +155,7 @@ export function ContactSection() {
                         />
                       ) : (
                         <>
-                          Send Message
+                          ارسال پیام
                           <FaPaperPlane className="ml-2 h-4 w-4" />
                         </>
                       )}

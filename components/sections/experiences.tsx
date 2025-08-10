@@ -7,8 +7,6 @@ import { Card } from "@/components/ui/card"
 import { GitlabIcon as GitHub, Linkedin, Mail, Calendar, X } from 'lucide-react'
 import Image from "next/image"
 
-
-// Define the type for an experience
 type Experience = {
   role: string;
   company: string;
@@ -19,40 +17,39 @@ type Experience = {
   color: string;
 };
 
-
-const experiences = [
+const experiences: Experience[] = [
   {
-    role: "Frontend Developer",
+    role: "توسعه‌دهنده فرانت‌اند",
     company: "Tech Solutions",
-    duration: "Jan 2022 - Present",
-    description: "Developing cutting-edge web applications using Next.js, React, and Tailwind CSS.",
+    duration: "ژانویه ۲۰۲۲ تا الان",
+    description: "توسعه اپلیکیشن‌های وب با تکنولوژی‌های جدید مثل Next.js، ری‌اکت و Tailwind.",
     technologies: ["React", "Next.js", "Tailwind CSS", "TypeScript"],
     companyLogo: "/placeholder.svg?height=48&width=48",
     color: "from-blue-400 to-blue-600",
   },
   {
-    role: "UI/UX Designer",
+    role: "طراح رابط و تجربه کاربری",
     company: "Creative Agency",
-    duration: "Jun 2020 - Dec 2021",
-    description: "Designing interactive and user-friendly interfaces for web and mobile apps.",
+    duration: "ژوئن ۲۰۲۰ تا دسامبر ۲۰۲۱",
+    description: "طراحی رابط‌های کاربری تعاملی و کاربرپسند برای وب و موبایل.",
     technologies: ["Figma", "Adobe XD", "UI/UX Design"],
     companyLogo: "/placeholder.svg?height=48&width=48",
     color: "from-purple-400 to-purple-600",
   },
   {
-    role: "Full Stack Developer",
+    role: "توسعه‌دهنده فول‌استک",
     company: "Web Innovators",
-    duration: "Mar 2019 - May 2020",
-    description: "Worked on both front-end and back-end development of an e-commerce platform using Node.js, Express, and React.",
+    duration: "مارس ۲۰۱۹ تا می ۲۰۲۰",
+    description: "کار همزمان روی فرانت و بک‌اند یه پلتفرم فروشگاهی با Node، Express و React.",
     technologies: ["Node.js", "Express", "React", "MongoDB"],
     companyLogo: "/placeholder.svg?height=48&width=48",
     color: "from-green-400 to-green-600",
   },
   {
-    role: "Backend Developer",
+    role: "توسعه‌دهنده بک‌اند",
     company: "DataTech Solutions",
-    duration: "Jan 2018 - Feb 2019",
-    description: "Focused on developing and optimizing APIs and database architecture using Java and PostgreSQL.",
+    duration: "ژانویه ۲۰۱۸ تا فوریه ۲۰۱۹",
+    description: "تمرکز روی توسعه و بهینه‌سازی API و دیتابیس با جاوا و PostgreSQL.",
     technologies: ["Java", "Spring Boot", "PostgreSQL", "Docker"],
     companyLogo: "/placeholder.svg?height=48&width=48",
     color: "from-red-400 to-red-600",
@@ -84,10 +81,10 @@ const cardVariants = {
 }
 
 export function ExperienceSection() {
-  const [selectedExperience, setSelectedExperience] = useState<Experience | null>(null);
+  const [selectedExperience, setSelectedExperience] = useState<Experience | null>(null)
 
   return (
-    <section id="experiences" className="py-24 bg-gradient-to-br from-gray-900 to-gray-800 min-h-screen">
+    <section id="experiences" className="py-10 bg-gradient-to-br from-gray-900 to-gray-800 min-h-screen">
       <div className="container px-4 mx-auto">
         <motion.div
           initial="hidden"
@@ -100,14 +97,14 @@ export function ExperienceSection() {
             variants={cardVariants}
             className="text-center mb-12"
           >
-            <h2 className="text-4xl font-bold mb-4 text-white">Work Experience</h2>
+            <h2 className="text-4xl font-bold mb-4 text-white">تجربه‌های کاری من</h2>
             <p className="text-gray-300 max-w-2xl mx-auto">
-              A selection of my recent professional roles where I've grown my skills and worked on exciting projects.
+              یه نگاه کوتاه به مسیر حرفه‌ای‌م؛ جاهایی که توشون کار کردم و چیزای جدیدی یاد گرفتم.
             </p>
           </motion.div>
 
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-items-center">
-            {experiences.map((experience, index) => (
+            {experiences.map((experience) => (
               <motion.div
                 key={experience.company}
                 variants={cardVariants}
@@ -152,7 +149,7 @@ export function ExperienceSection() {
                   <div className="flex flex-wrap gap-4 mt-auto">
                     <Button variant="secondary" className="flex-1 bg-white text-gray-800 hover:bg-gray-200">
                       <Calendar className="mr-2 h-4 w-4" />
-                      View Details
+                      جزییات بیشتر
                     </Button>
                     <Button variant="outline" size="icon" className="text-white hover:bg-white hover:text-gray-800">
                       <GitHub className="h-5 w-5" />
@@ -216,11 +213,11 @@ export function ExperienceSection() {
               <div className="flex justify-end space-x-4">
                 <Button variant="secondary" className="bg-white text-gray-800 hover:bg-gray-200">
                   <GitHub className="mr-2 h-5 w-5" />
-                  View Project
+                  پروژه
                 </Button>
                 <Button variant="secondary" className="bg-white text-gray-800 hover:bg-gray-200">
                   <Mail className="mr-2 h-5 w-5" />
-                  Contact
+                  تماس
                 </Button>
               </div>
             </motion.div>

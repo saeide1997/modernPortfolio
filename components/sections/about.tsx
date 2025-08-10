@@ -4,23 +4,26 @@ import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
-import { FaDownload, FaGithub, FaLinkedin, FaEnvelope } from 'react-icons/fa'
+import { FaDownload, FaGithub, FaLinkedin, FaEnvelope, FaLink } from 'react-icons/fa'
 import Image from "next/image"
+import Link from "next/link"
 
 const skills = [
-  "React/Next.js",
+  "JavaScript",
   "TypeScript",
-  "Node.js",
-  "Tailwind CSS",
-  "Framer Motion",
+  "ReactJs",
+  "NextJs",
+  "NodeJs",
+  "Laravel",
   "UI/UX Design",
+  "Tailwind CSS",
 ]
 
 const interests = [
-  { icon: "🚀", label: "Space Exploration" },
-  { icon: "🎮", label: "Gaming" },
-  { icon: "📚", label: "Reading" },
-  { icon: "🎨", label: "Digital Art" },
+  { icon: "💻", label: "برنامه نویسی" },
+  { icon: "📰", label: "مطالعه تازه ترین‌ها در تکنولوژی" },
+  { icon: "📚", label: "کتاب‌خوانی" },
+  { icon: "🎨", label: "هنر(سفالگری، نقاشی، خیاطی، ...) " },
 ]
 
 const floatingAnimation = {
@@ -40,7 +43,7 @@ export function AboutSection() {
   const [showBio, setShowBio] = useState(false)
 
   return (
-    <section id="about" className="py-24 bg-gradient-to-br from-background to-secondary/30 overflow-hidden">
+    <section id="about" className="py-10 bg-gradient-to-br from-background to-secondary/30 overflow-hidden">
       <div className="container px-4 mx-auto relative">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -49,7 +52,7 @@ export function AboutSection() {
           transition={{ duration: 0.5 }}
           className="grid gap-12 md:grid-cols-2 items-center"
         >
-          {/* Image Column */}
+          {/* ستون تصویر */}
           <div className="relative">
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
@@ -60,12 +63,12 @@ export function AboutSection() {
             >
               <Image
                 src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1288&auto=format&fit=crop"
-                alt="Profile"
+                alt="تصویر پروفایل"
                 fill
                 className="object-cover"
                 priority
               />
-              <motion.div 
+              <motion.div
                 className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -82,15 +85,15 @@ export function AboutSection() {
             />
           </div>
 
-          {/* Content Column */}
-          <div className="space-y-8">
+          {/* ستون محتوا */}
+          <div className="space-y-8 text-right">
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
+              initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <h2 className="text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">About Me</h2>
+              <h2 className="text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">درباره من</h2>
               <AnimatePresence mode="wait">
                 {showBio ? (
                   <motion.p
@@ -101,10 +104,7 @@ export function AboutSection() {
                     transition={{ duration: 0.3 }}
                     className="text-muted-foreground"
                   >
-                    I'm a passionate developer focused on creating beautiful and functional web experiences. 
-                    With expertise in modern web technologies, I bring ideas to life through clean code and 
-                    thoughtful design. My journey in tech started with a fascination for problem-solving and 
-                    has evolved into a career dedicated to crafting intuitive digital solutions.
+                    من یه توسعه‌دهنده‌ی عاشق خلق تجربه‌های مدرن و زیبای وبم. با استفاده از ابزارهای روز، تلاش می‌کنم ایده‌هامو به شکلی تمیز، کاربردی و کاربرپسند پیاده کنم. مسیر من تو دنیای تکنولوژی با علاقه به حل مسئله شروع شد و الان به ساخت راه‌حل‌های دیجیتالی هوشمند رسیده.
                   </motion.p>
                 ) : (
                   <motion.p
@@ -115,29 +115,29 @@ export function AboutSection() {
                     transition={{ duration: 0.3 }}
                     className="text-muted-foreground"
                   >
-                    I'm a passionate developer focused on creating beautiful and functional web experiences...
+                    من یه توسعه‌دهنده‌ام که عاشق خلق تجربه‌های زیبا و کاربردی در وب هستم...
                   </motion.p>
                 )}
               </AnimatePresence>
-              <Button 
-                variant="link" 
+              <Button
+                variant="link"
                 onClick={() => setShowBio(!showBio)}
                 className="mt-2 p-0 h-auto font-semibold text-primary hover:text-primary/80"
               >
-                {showBio ? "Read Less" : "Read More"}
+                {showBio ? "بستن" : "بیشتر بخوانید"}
               </Button>
             </motion.div>
 
-            {/* Skills */}
+            {/* مهارت‌ها */}
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
+              initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.3 }}
               className="space-y-4"
             >
-              <h3 className="text-xl font-semibold">Core Skills</h3>
-              <div className="flex flex-wrap gap-2">
+              <h3 className="text-xl font-semibold">مهارت‌های اصلی</h3>
+              <div className="flex ltr flex-wrap gap-2 justify-start">
                 {skills.map((skill, index) => (
                   <motion.button
                     key={skill}
@@ -147,12 +147,8 @@ export function AboutSection() {
                     whileTap={{ scale: 0.95 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.3, delay: index * 0.1 }}
-                    className={`px-3 py-1 rounded-full text-sm ${
-                      activeSkill === skill 
-                        ? "bg-primary text-primary-foreground" 
-                        : "bg-secondary text-secondary-foreground"
-                    }`}
-                    onClick={() => setActiveSkill(activeSkill === skill ? null : skill)}
+                    className={`px-3 py-1 rounded-full cursor-default text-sm bg-secondary text-secondary-foreground`}
+                  // onClick={() => setActiveSkill(activeSkill === skill ? null : skill)}
                   >
                     {skill}
                   </motion.button>
@@ -165,23 +161,23 @@ export function AboutSection() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.2 }}
-                    className="mt-2 p-2 bg-secondary/50 rounded-md text-sm"
+                    className="mt-2 p-2 bg-secondary/50 rounded-md text-sm text-right"
                   >
-                    {`${activeSkill}: Click to see projects using this skill!`}
+                    {`${activeSkill} : پروژه‌هایی با این مهارت رو ببین!`}
                   </motion.div>
                 )}
               </AnimatePresence>
             </motion.div>
 
-            {/* Interests */}
+            {/* علاقه‌مندی‌ها */}
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
+              initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.4 }}
               className="space-y-4"
             >
-              <h3 className="text-xl font-semibold">Interests</h3>
+              <h3 className="text-xl font-semibold">علاقه‌مندی‌ها</h3>
               <div className="grid grid-cols-2 gap-4">
                 {interests.map((interest, index) => (
                   <motion.div
@@ -191,49 +187,46 @@ export function AboutSection() {
                     whileHover={{ scale: 1.05 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.3, delay: index * 0.1 }}
-                    className="flex items-center space-x-2 p-2 bg-secondary/30 rounded-md"
+                    className="flex justify-start items-center gap-2 p-2 bg-secondary/30 rounded-md"
                   >
                     <span className="text-2xl">{interest.icon}</span>
-                    <span className="text-sm text-secondary-foreground">
-                      {interest.label}
-                    </span>
+                    <span className="text-sm text-secondary-foreground">{interest.label}</span>
                   </motion.div>
                 ))}
               </div>
             </motion.div>
 
-            {/* Actions */}
+            {/* دکمه‌ها */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.5 }}
-              className="flex flex-wrap gap-4"
+              className="flex flex-wrap gap-4 justify-start"
             >
               <Button className="bg-gradient-to-r from-primary to-secondary hover:from-primary/80 hover:to-secondary/80 text-primary-foreground">
-                <FaDownload className="mr-2 h-4 w-4" />
-                Download CV
+                <FaDownload className="ml-2 h-4 w-4" />
+                دریافت رزومه
               </Button>
-              <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-                <FaEnvelope className="mr-2 h-4 w-4" />
-                Contact Me
-              </Button>
-              <Button variant="ghost" size="icon" className="text-primary hover:bg-primary/20">
-                <FaGithub className="h-5 w-5" />
-              </Button>
-              <Button variant="ghost" size="icon" className="text-primary hover:bg-primary/20">
-                <FaLinkedin className="h-5 w-5" />
-              </Button>
+              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=saeiide.tm@gmail.com" target="_blank" rel="noopener noreferrer">
+                <Button variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+                  <FaEnvelope className="ml-2 h-4 w-4" />
+                  تماس با من
+                </Button>
+              </a>
+              <Link href="https://github.com/saeide1997">
+                <Button variant="ghost" size="icon" className="text-primary hover:bg-primary/20">
+                  <FaGithub className="h-5 w-5" />
+                </Button>
+              </Link>
+              <Link href="">
+                <Button variant="ghost" size="icon" className="text-primary hover:bg-primary/20">
+                  <FaLinkedin className="h-5 w-5" />
+                </Button>
+              </Link>
             </motion.div>
           </div>
         </motion.div>
-
-        {/* Glowing orbs */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full max-w-4xl max-h-4xl opacity-30 pointer-events-none">
-          <div className="absolute top-0 left-0 w-72 h-72 bg-primary rounded-full mix-blend-multiply filter blur-xl animate-blob" />
-          <div className="absolute top-0 right-0 w-72 h-72 bg-secondary rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-2000" />
-          <div className="absolute bottom-0 left-1/2 w-72 h-72 bg-accent rounded-full mix-blend-multiply filter blur-xl animate-blob animation-delay-4000" />
-        </div>
       </div>
     </section>
   )
