@@ -62,14 +62,14 @@ export function AboutSection() {
               className="relative aspect-square rounded-2xl overflow-hidden"
             >
               <Image
-                src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1288&auto=format&fit=crop"
+                src="https://i.postimg.cc/SNFzNnW4/Whats-App-Image-2025-08-12-at-5-00-07-PM.jpg"
                 alt="تصویر پروفایل"
                 fill
                 className="object-cover"
                 priority
               />
               <motion.div
-                className="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent"
+                className="absolute inset-0 bg-gradient-to-t from-green-400 to-transparent"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1 }}

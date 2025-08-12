@@ -92,6 +92,15 @@ export function SkillSection() {
     projects: ["API رست‌فول", "چت بلادرنگ", "سیستم مدیریت کارها"],
   },
   {
+    name: "PHP",
+    btBg: "bg-blue-600",
+    bg: "from-blue-700 to-blue-400",
+    level: 60,
+    icon: "php.png",
+    description: "زبان برنامه‌نویسی سمت سرور برای توسعه وب و اپلیکیشن‌های پیچیده",
+    projects: ["CRM سازمانی", "سیستم مدیریت محتوا", "وب‌سایت‌های پویا"],
+  },
+  {
     name: "Tailwind",
     btBg: "bg-cyan-400",
     bg: "from-cyan-400 to-white",

@@ -3,206 +3,292 @@
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog"
-import { FaChevronRight, FaGithub, FaExternalLinkAlt, FaChevronLeft } from 'react-icons/fa'
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog"
+import {
+  FaChevronRight,
+  FaGithub,
+  FaExternalLinkAlt,
+  FaTimes,
+  FaChevronLeft,
+} from "react-icons/fa"
 
 type Project = {
-  id: number;
-  title: string;
-  description: string;
-  image: string;
-  color: string;
-  textColor: string;
-  details: string;
-  technologies: string[];
-  github: string;
-  live: string;
-};
+  id: number
+  title: string
+  description: string
+  image: string
+  colorStart: string
+  colorEnd: string
+  textColor: string
+  details: string
+  technologies: string[]
+  github: string
+  live: string
+}
 
 const projects: Project[] = [
   {
+    id: 4,
+    title: "اپلیکیشن مدیریت دارایی (دارائیست)",
+    description:
+      "اپلیکیشن تحت وب برای مدیریت دارایی‌ها با قابلیت محاسبه لحظه‌ای و نمایش نمودار تغییرات به همراه امنیت و احراز هویت قوی.",
+    image: "https://i.postimg.cc/L6XhsmGv/Screenshot-from-2025-08-12-16-19-29.png",
+    colorStart: "from-teal-200",
+    colorEnd: "to-teal-700",
+    textColor: "text-white",
+    details:
+      "این برنامه با Next.js و MongoDB توسعه داده شده است و کاربران می‌توانند دارایی‌های مختلفی مثل طلا، ارز، رمز ارز و بورس را وارد و مدیریت کنند. نمودارهای تغییرات به صورت روزانه و ماهانه نمایش داده می‌شوند. اپلیکیشن دارای سیستم لاگین و ثبت‌نام با JWT و امنیت بالا است. می‌توانید با admin و پسورد ۱۲۳۴۵۶ وارد سایت شوید",
+    technologies: ["Next.js", "MongoDB", "Tailwind CSS", "JWT", "Chart.js"],
+    github: "https://github.com/saeide1997/daraist_asset_app",
+    live: "https://daraist.saeidehtajmehr.me",
+  },
+  {
+    id: 5,
+    title: "اپلیکیشن رزرواسیون آنلاین نسخه موبایل",
+    description:
+      "سیستم رزرو آنلاین با قابلیت نمایش لحظه‌ای ظرفیت، انتخاب هوشمند زمان و ارسال اطلاعیه به کاربران.",
+    image: "https://i.postimg.cc/mgSb3Jxh/Screenshot-from-2025-08-12-16-22-09.png",
+    colorStart: "from-blue-400",
+    colorEnd: "to-blue-800",
+    textColor: "text-white",
+    details:
+      "اپلیکیشن رزرواسیون با React و Firebase توسعه داده شده است. طراحی شده تا کاربر بتواند به راحتی زمان دلخواه خود را انتخاب و رزرو کند. دارای سیستم اطلاع‌رسانی با استفاده از Firebase Cloud Messaging است. طراحی کاملاً واکنش‌گرا و UX روان و ساده.",
+    technologies: ["ReactJs", "PHP", "Laravel", "Tailwind CSS", "TypeScript"],
+    github: "https://github.com/saeide1997/Clinic-Laravel-ReactJs",
+    live: "https://doctoret.saeidehtajmehr.me",
+  },
+  {
+    id: 6,
+    title: "اپلیکیشن رزرواسیون آنلاین نسخه وب",
+    description:
+      "سیستم رزرو آنلاین با قابلیت نمایش لحظه‌ای ظرفیت، انتخاب هوشمند زمان و ارسال اطلاعیه به کاربران.",
+    image: "https://i.postimg.cc/tCGdYShY/Screenshot-from-2025-08-12-16-42-42.png",
+    colorStart: "from-teal-400",
+    colorEnd: "to-blue-900",
+    textColor: "text-white",
+    details:
+      "اپلیکیشن رزرواسیون با React و Firebase توسعه داده شده است. طراحی شده تا کاربر بتواند به راحتی زمان دلخواه خود را انتخاب و رزرو کند. دارای سیستم اطلاع‌رسانی با استفاده از Firebase Cloud Messaging است. طراحی کاملاً واکنش‌گرا و UX روان و ساده.",
+    technologies: ["ReactJs", "PHP", "Laravel", "Tailwind CSS", "TypeScript"],
+    github: "https://github.com/saeide1997/Clinic-Laravel-ReactJs",
+    live: "https://doctoret.saeidehtajmehr.me",
+  },
+  {
     id: 1,
-    title: "پنل کاربری سایت فروشگاهی",
-    description: "پنل مدیریت سایت فروشگاهی با React توسعه داده شده و امکانات جامعی برای مدیریت محصولات، سفارشات و تحلیل داده‌ها دارد.",
+    title: "پنل مدیریت فروشگاه آنلاین",
+    description:
+      "داشبورد مدیریت کامل فروشگاه با امکانات پیشرفته تحلیل فروش و مدیریت سفارش‌ها، طراحی ریسپانسیو و UX بی‌نظیر.",
     image: "https://i.postimg.cc/wBVC1bk9/image.png",
-    color: "from-red-400 to-gray-700",
-    textColor: "text-blue-100",
-    details: "طراحی رابط کاربری با تمرکز بر تجربه کاربری روان و ساده انجام شده و از اصول طراحی واکنش‌گرا (Responsive Design) برای سازگاری با انواع دستگاه‌ها بهره گرفته شده است. استفاده از کامپوننت‌های قابل استفاده مجدد و ساختار ماژولار باعث شده تا نگهداری و توسعه این پروژه در بلندمدت بسیار آسان باشد.همچنین با استفاده از کتابخانه‌های گرافیکی و نموداری، تحلیل داده‌های فروش به‌صورت بصری نمایش داده می‌شود تا مدیر فروشگاه بتواند تصمیم‌گیری بهتری انجام دهد. این پنل قابل اتصال به APIهای سمت سرور و کاملاً انعطاف‌پذیر برای توسعه بیشتر است.",
-    technologies: ["React", "Node.js", "Tailwind CSS", "MongoDB"],
+    colorStart: "from-red-200",
+    colorEnd: "to-red-700",
+    textColor: "text-white",
+    details:
+      "این پنل مدیریت با React و Tailwind CSS توسعه داده شده است و شامل بخش‌های پیشرفته برای مدیریت محصولات، دسته‌بندی‌ها، سفارشات و کاربران می‌باشد. رابط کاربری بسیار روان و مدرن با استفاده از کامپوننت‌های ماژولار طراحی شده تا توسعه و نگهداری آسان باشد. همچنین داشبورد مجهز به نمودارهای تحلیلی است که با D3.js و Recharts ساخته شده‌اند و اطلاعات فروش را بصورت بصری به مدیر ارائه می‌دهد.",
+    technologies: ["React", "Node.js", "Tailwind CSS", "MongoDB", "Recharts"],
     github: "https://github.com/saeide1997/React-Dashboard",
-    live: "https://sohoedashboard.saeidehtajmehr.me/"
+    live: "https://sohoedashboard.saeidehtajmehr.me/",
   },
   {
     id: 2,
-    title: "پروژه مدیریت سیستم آموزشی با NextJs",
-    description: "سایت پنل آموزشی ما یک پلتفرم جامع برای مدیریت و آموزش است. دارای داشبوردهای مجزا برای مدیران و معلمان، تقویم داخلی و نمودارهای پیشرفت است که به تحلیل و بررسی داده‌ها کمک می‌کند.",
+    title: "سیستم مدیریت آموزش با Next.js",
+    description:
+      "پلتفرم مدیریت آموزش مدرن با قابلیت‌های متنوع برای مدیران، معلمان و دانش‌آموزان همراه با رابط تعاملی و تقویم هوشمند.",
     image: "https://i.postimg.cc/2yz8ypLD/image.png",
-    color: "from-yellow-300 to-blue-500",
-    textColor: "text-green-100",
-    details: `از جمله قابلیت‌های کلیدی این پلتفرم می‌توان به موارد زیر اشاره کرد:<br />
-              داشبورد مدیریتی پویا برای مشاهده آمار کلی، وضعیت کلاس‌ها، فعالیت کاربران و مدیریت محتوا.<br />
-              داشبورد معلمان برای برنامه‌ریزی دروس، ارزیابی عملکرد دانش‌آموزان و ثبت نمرات.<br />
-              تقویم داخلی تعاملی برای برنامه‌ریزی جلسات، کلاس‌ها و رویدادهای آموزشی.<br />
-              نمودارهای گرافیکی و تحلیلی جهت نمایش روند پیشرفت دانش‌آموزان و ارزیابی اثربخشی آموزش.<br />
-              واسط کاربری ساده و واکنش‌گرا که تجربه‌ای روان و کاربرپسند را برای تمام کاربران فراهم می‌سازد.<br />
-              این پلتفرم با هدف تسهیل مدیریت آموزشی، تحلیل داده‌ها و ایجاد ارتباط مؤثر بین مدیر، معلم و دانش‌آموز توسعه داده شده و قابلیت گسترش برای افزودن نقش‌ها و امکانات بیشتر را نیز دارد.`,
-    technologies: ["Next.js", "TypeScript", "Tailwind CSS"],
+    colorStart: "from-yellow-200",
+    colorEnd: "to-yellow-400",
+    textColor: "text-white",
+    details:
+      "این پروژه مبتنی بر Next.js و TypeScript پیاده‌سازی شده و شامل داشبوردهای مختلف برای مدیریت، ارزیابی عملکرد، برنامه‌ریزی دروس، ثبت نمرات و تقویم آموزشی هوشمند است. طراحی رابط کاربری با Tailwind CSS انجام شده و تمامی بخش‌ها واکنش‌گرا و قابل استفاده در موبایل و دسکتاپ هستند. سیستم به گونه‌ای توسعه یافته که به راحتی قابلیت افزودن نقش‌ها و امکانات جدید را داشته باشد.",
+    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Prisma", "PostgreSQL"],
     github: "https://github.com/saeide1997/School-Management-NextJS-ui",
-    live: "https://sohoschool.saeidehtajmehr.me/admin"
+    live: "https://sohoschool.saeidehtajmehr.me/admin",
   },
   {
     id: 3,
-    title: "پورتفولیوی متحرک با NextJs",
-    description: "سایت پورتفولیو ما با React طراحی شده تا نمونه‌کارها را با طراحی مدرن و واکنش‌گرا به بهترین شکل نمایش دهد. در تمام دستگاه‌ها به‌خوبی عمل می‌کند.",
+    title: "پورتفولیوی متحرک با Next.js",
+    description:
+      "سایتی با طراحی مینیمال و انیمیشن‌های حرفه‌ای برای نمایش پروژه‌ها و مهارت‌ها به صورت تعاملی و واکنش‌گرا.",
     image: "https://i.postimg.cc/L6wYdDXF/Screenshot-from-2025-08-03-20-25-54.png",
-    color: "from-blue-300 to-gray-700",
-    textColor: "text-red-100",
-    details: "سایت پورتفولیوی ما با استفاده از NextJs توسعه داده شده و با طراحی مدرن و مینیمال، بستری حرفه‌ای برای نمایش نمونه‌کارها فراهم می‌کند. این وب‌سایت کاملاً واکنش‌گرا طراحی شده و در تمامی دستگاه‌ها از جمله موبایل، تبلت و دسکتاپ عملکردی روان و دقیق دارد. تمرکز اصلی این پروژه بر تجربه کاربری (UX) و ارائه‌ی تصویری شفاف از مهارت‌ها و پروژه‌ها بوده است.",
-    technologies: ["Next.js", "JavaScript", "Tailwind CSS"],
+    colorStart: "from-blue-400",
+    colorEnd: "to-gray-800",
+    textColor: "text-white",
+    details:
+      "این پورتفولیو بر پایه Next.js و Tailwind CSS طراحی شده است. طراحی مدرن، مینیمال و تمرکز بر UX عالی باعث شده کاربر بتواند به راحتی پروژه‌ها را مشاهده کند. انیمیشن‌ها با Framer Motion ساخته شده‌اند که باعث ایجاد جذابیت بصری و حس حرفه‌ای بودن می‌شود. کامپوننت‌های واکنش‌گرا و قابل استفاده مجدد، توسعه پروژه را ساده کرده‌اند.",
+    technologies: ["Next.js", "JavaScript", "Tailwind CSS", "Framer Motion"],
     github: "https://github.com/saeide1997/next-animated-portfolio",
-    live: "https://blockchain-supply.example.com"
-  }
-];
+    live: "https://blockchain-supply.example.com",
+  },
+]
 
 export function ProjectSection() {
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null)
+
+  // انیمیشن‌ها
+  const containerVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        staggerChildren: 0.15,
+      },
+    },
+  }
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0 },
+    hover: { scale: 1.05, boxShadow: "0 15px 25px rgba(0,0,0,0.3)" },
+    tap: { scale: 0.95 },
+  }
 
   return (
-    <section id="projects" className="py-10 bg-gradient-to-br from-background to-secondary/30 transition-colors duration-300 overflow-hidden">
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-        className="relative min-h-screen flex flex-col items-center justify-center"
-      >
-        <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 animate-gradient" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/20 via-secondary/20 to-background animate-pulse" />
-        </div>
+    <section
+      id="projects"
+      className="relative py-16 bg-gradient-to-tr from-gray-200 via-gray-100 to-gray-200 text-white overflow-x-hidden"
+    >
+      <div className="container mx-auto px-6 max-w-7xl z-20 relative">
+        <motion.h2
+          initial={{ opacity: 0, scale: 0.7 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="text-4xl font-extrabold text-center mb-12 bg-gradient-to-r from-green-400 via-blue-500 to-teal-700 bg-clip-text text-transparent"
+        >
+          پروژه‌های اجرا شده
+        </motion.h2>
 
-        <div className="container mx-auto px-4 z-10">
-          <div className="text-center mb-12">
-            <motion.h2
-              initial={{ scale: 0.5, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.5 }}
-              className="text-4xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10"
+        >
+          {projects.map((project) => (
+            <motion.div
+              key={project.id}
+              variants={cardVariants}
+              whileHover="hover"
+              whileTap="tap"
+              className={`rounded-xl bg-gradient-to-br ${project.colorStart} ${project.colorEnd} p-6 shadow-lg cursor-pointer flex flex-col justify-between select-none`}
+              onClick={() => setSelectedProject(project)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") setSelectedProject(project)
+              }}
+              aria-label={`نمایش جزئیات پروژه ${project.title}`}
             >
-              پروژه‌های من
-            </motion.h2>
-
-            {/* <motion.p
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 0.2, duration: 0.5 }}
-              className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto"
-            >
-              نگاهی به چند تا از پروژه‌هایی بنداز که با تکنولوژی‌های روز و دیدگاه حل مسئله ساختم.
-            </motion.p> */}
-          </div>
-
-          <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.4, duration: 0.5 }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-          >
-            {projects.map((project, index) => (
-              <motion.div
-                key={project.id}
-                className={`flex flex-col justify-between h-[480px] bg-gradient-to-br ${project.color} p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2`}
-                initial={{ y: 50, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.5 + index * 0.1, duration: 0.6 }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+              <img
+                src={project.image}
+                alt={project.title}
+                className="rounded-lg mb-5 w-full h-48 object-cover shadow-md"
+                loading="lazy"
+              />
+              <h3 className="text-2xl font-semibold mb-2">{project.title}</h3>
+              <p className="text-gray-200 mb-4 flex-grow">{project.description}</p>
+              <div className="flex flex-wrap gap-2 mb-4">
+                {project.technologies.map((tech) => (
+                  <span
+                    key={tech}
+                    className="bg-white bg-opacity-20 px-3 py-1 rounded-full text-sm font-medium"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+              <Button
+                variant="outline"
+                className={`${project.textColor} mt-auto dark:text-white dark:bg-slate-700 text-black`}
+                onClick={(e) => {
+                  setSelectedProject(project)
+                }}
+                aria-label={`جزئیات بیشتر پروژه ${project.title}`}
               >
-                <div>
-                  <motion.img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-48 object-cover rounded-t-lg mb-4"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.6 + index * 0.1, duration: 0.5 }}
-                  />
-                  <motion.h3
-                    className={`text-2xl font-semibold mt-4 ${project.textColor}`}
-                    initial={{ y: 20, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 0.8 + index * 0.1, duration: 0.5 }}
-                  >
-                    {project.title}
-                  </motion.h3>
-                  <motion.p
-                    className={`mt-2 ${project.textColor} opacity-90`}
-                    initial={{ y: 20, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 1 + index * 0.1, duration: 0.5 }}
-                  >
-                    {project.description}
-                  </motion.p>
-                </div>
+                جزئیات بیشتر <FaChevronLeft className="ml-2" />
+              </Button>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
 
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 1.2 + index * 0.1, duration: 0.5 }}
-                  className="mt-6"
-                >
-                  <Button
-                    size="lg"
-                    className={`flex w-56 justify-between bg-white/20 hover:bg-white/30 ${project.textColor}`}
-                    onClick={() => setSelectedProject(project)}
-                  >
-                    جزئیات پروژه
-                    <FaChevronLeft className="mr-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </Button>
-                </motion.div>
-              </motion.div>
-            ))}
-          </motion.div>
-
-        </div>
-      </motion.div>
-
+      {/* دیالوگ جزئیات پروژه */}
       <AnimatePresence>
         {selectedProject && (
-          <Dialog open={!!selectedProject} onOpenChange={() => setSelectedProject(null)}>
-            <DialogContent className="sm:max-w-[625px]">
-              <DialogHeader>
-                <DialogTitle>{selectedProject.title}</DialogTitle>
-                <DialogDescription>
-                  <img
-                    src={selectedProject.image}
-                    alt={selectedProject.title}
-                    className="w-full h-48 object-cover rounded-lg mb-4"
-                  />
-                  <p className="mb-4 mx-3" dangerouslySetInnerHTML={{ __html: selectedProject.details }} />
-                  <h4 className="font-semibold mb-2 mx-3">تکنولوژی‌های استفاده شده:</h4>
-                  <div className="flex flex-wrap gap-2 mb-4 mx-3">
-                    {selectedProject.technologies.map((tech) => (
-                      <span key={tech} className="px-2 py-1 bg-secondary text-secondary-foreground rounded-full text-sm">
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="flex gap-4 mx-3">
-                    <a href={selectedProject.github} target="_blank" rel="noopener noreferrer">
-                      <Button className="group bg-gray-800 text-white hover:bg-gray-700">
-                        <FaGithub className="ml-2" />
-                        سورس‌کد
-                      </Button>
-                    </a>
-                    <a href={selectedProject.live} target="_blank" rel="noopener noreferrer">
-                      <Button className="group bg-blue-600 text-white hover:bg-blue-500">
-                        <FaExternalLinkAlt className="ml-2" />
-                        مشاهده زنده
-                      </Button>
-                    </a>
-                  </div>
-                </DialogDescription>
-              </DialogHeader>
+          <Dialog
+            open={Boolean(selectedProject)}
+            onOpenChange={() => setSelectedProject(null)}
+          >
+            <DialogContent
+              className={`max-w-3xl max-h-screen rounded-2xl p-8 bg-gradient-to-br ${selectedProject.colorStart} ${selectedProject.colorEnd} text-white shadow-2xl`}
+            >
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8, y: -50 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.8, y: 50 }}
+                transition={{ duration: 0.3 }}
+                className="relative"
+              >
+                <DialogHeader>
+                  <DialogTitle className="text-4xl font-bold mb-3">
+                    {selectedProject.title}
+                  </DialogTitle>
+                  <DialogDescription className="text-lg text-gray-100 mb-6">
+                    {selectedProject.details}
+                  </DialogDescription>
+                </DialogHeader>
+
+                <img
+                  src={selectedProject.image}
+                  alt={selectedProject.title}
+                  className="rounded-lg mb-6 w-full max-h-80 object-cover shadow-lg"
+                  loading="lazy"
+                />
+
+                <div className="flex flex-wrap gap-3 mb-6">
+                  {selectedProject.technologies.map((tech) => (
+                    <span
+                      key={tech}
+                      className="bg-purple-600 bg-opacity-40 px-4 py-1 rounded-full text-white font-semibold"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="flex gap-6 justify-center mt-8">
+                  <a
+                    href={selectedProject.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 bg-gray-700 hover:bg-gray-600 px-6 py-3 rounded-full text-white font-semibold transition"
+                    aria-label={`مشاهده کد پروژه ${selectedProject.title} در گیت‌هاب`}
+                  >
+                    <FaGithub size={22} /> گیت‌هاب
+                  </a>
+                  <a
+                    href={selectedProject.live}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 bg-purple-700 hover:bg-purple-600 px-6 py-3 rounded-full text-white font-semibold transition"
+                    aria-label={`مشاهده نسخه زنده پروژه ${selectedProject.title}`}
+                  >
+                    <FaExternalLinkAlt size={20} /> مشاهده آنلاین
+                  </a>
+                </div>
+
+                {/* <button
+                  onClick={() => setSelectedProject(null)}
+                  aria-label="بستن پنجره جزئیات پروژه"
+                  className="absolute top-5 right-5 text-gray-400 hover:text-white transition"
+                > */}
+                  {/* <FaTimes size={24} />
+                </button> */}
+              </motion.div>
             </DialogContent>
           </Dialog>
         )}
